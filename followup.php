@@ -33,7 +33,7 @@ class Followup extends Module
 	{
 		$this->name = 'followup';
 		$this->tab = 'advertising_marketing';
-		$this->version = '1.6';
+		$this->version = '1.6.1';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 
@@ -65,7 +65,6 @@ class Followup extends Module
 		$this->displayName = $this->l('Customer follow-up');
 		$this->description = $this->l('Follow-up with your customers with daily customized e-mails.');
 		$this->confirmUninstall = $this->l('Are you sure you want to delete all settings and your logs?');
-		$this->ps_versions_compliancy = array('min' => '1.5.6.1', 'max' => _PS_VERSION_);
 	}
 
 	public function install()
