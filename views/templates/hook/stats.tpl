@@ -25,33 +25,33 @@
 
 <div class="panel" id="fieldset_4">
     <h3><i class="icon-bar-chart"></i> {l s='Statistics' mod='followup'}</h3>
-	<p>{l s='Detailed statistics for last 30 days:' mod='followup'}</p>
-	<p style="font-size: 10px; font-weight: bold;">
-		{l s='S = Number of sent e-mails' mod='followup'}<br />
-		{l s='U = Number of discounts used (valid orders only)' mod='followup'}<br />
-		{l s='% = Conversion rate' mod='followup'}
-	</p>
+	<p>{l s='Detailed statistics for the last 30 days:' mod='followup'}</p>
+	<ul style="font-size: 10px; font-weight: bold;">
+		<li>{l s='Sent = Number of sent e-mails' mod='followup'}</li>
+		<li>{l s='Used = Number of discounts used (valid orders only)' mod='followup'}</li>
+		<li>{l s='Conversion % = Conversion rate' mod='followup'}</li>
+	</ul>
 	<table class="table">
 		<tr>
 			<th rowspan="2" style="width: 75px;">{l s='Date' mod='followup'}</th>
-			<th colspan="3">{l s='Cancelled carts' mod='followup'}</th>
-			<th colspan="3">{l s='Re-order' mod='followup'}</th>
-			<th colspan="3">{l s='Best cust.' mod='followup'}</th>
-			<th colspan="3">{l s='Bad cust.' mod='followup'}</th>
+			<th colspan="3">{l s='Canceled carts' mod='followup'}</th>
+			<th colspan="3">{l s='Re-orders' mod='followup'}</th>
+			<th colspan="3">{l s='Best customers' mod='followup'}</th>
+			<th colspan="3">{l s='Bad customers' mod='followup'}</th>
 		</tr>
 		<tr>
-			<td class="center">{l s='S' mod='followup'}</td>
-			<td class="center">{l s='U' mod='followup'}</td>
-			<td class="center">%</td>
-			<td class="center">{l s="S" mod='followup'}</td>
-			<td class="center">{l s="U" mod='followup'}</td>
-			<td class="center">%</td>
-			<td class="center">{l s="S" mod='followup'}</td>
-			<td class="center">{l s="U" mod='followup'}</td>
-			<td class="center">%</td>
-			<td class="center">{l s="S" mod='followup'}</td>
-			<td class="center">{l s="U" mod='followup'}</td>
-			<td class="center">%</td>
+			<td class="center">{l s='Sent' mod='followup'}</td>
+			<td class="center">{l s='Used' mod='followup'}</td>
+			<td class="center">{l s='Conversion (%)' mod='followup'}</td>
+			<td class="center">{l s="Sent" mod='followup'}</td>
+			<td class="center">{l s="Used" mod='followup'}</td>
+			<td class="center">{l s='Conversion (%)' mod='followup'}</td>
+			<td class="center">{l s="Sent" mod='followup'}</td>
+			<td class="center">{l s="Used" mod='followup'}</td>
+			<td class="center">{l s='Conversion (%)' mod='followup'}</td>
+			<td class="center">{l s="Sent" mod='followup'}</td>
+			<td class="center">{l s="Used" mod='followup'}</td>
+			<td class="center">{l s='Conversion (%)' mod='followup'}</td>
 		</tr>
 		{foreach from=$stats_array key='date' item='stats'}
 		<tr>
