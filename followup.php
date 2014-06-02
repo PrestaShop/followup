@@ -526,7 +526,7 @@ class Followup extends Module
 					array(
 						'type' => 'desc',
 						'name' => '',
-						'text' => sprintf($this->l('Next process will send: %d e-mail(s)'), $n1)
+						'text' => sprintf($this->l('The next process will send %d e-mail(s).'), $n1)
 					),
 				),
 				'submit' => array(
