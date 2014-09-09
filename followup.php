@@ -94,7 +94,7 @@ class Followup extends Module
 			Configuration::deleteByName($key);
 
 		Configuration::deleteByName('PS_FOLLOWUP_SECURE_KEY');
-		
+
 		Db::getInstance()->execute('DROP TABLE '._DB_PREFIX_.'log_email');
 
 		return parent::uninstall();
@@ -151,7 +151,7 @@ class Followup extends Module
 		$sql .= Shop::addSqlRestriction(Shop::SHARE_CUSTOMER, 'c');
 
 		if (!empty($email_logs))
-			$sql .= ' AND c.id_cart NOT IN ('.join(',', $email_logs).')';
+			$sql .= ' AND c.id_cart NOT IN ('.join(',', $email_logs).') GROUP BY c.id_cart';
 
 		$emails = Db::getInstance()->executeS($sql);
 
@@ -227,8 +227,8 @@ class Followup extends Module
 		FROM '._DB_PREFIX_.'orders o
 		LEFT JOIN '._DB_PREFIX_.'customer cu ON (cu.id_customer = o.id_customer)
 		LEFT JOIN '._DB_PREFIX_.'cart c ON (c.id_cart = o.id_cart)
-			WHERE o.valid = 1 
-			AND c.date_add >= DATE_SUB(CURDATE(),INTERVAL 7 DAY) 
+			WHERE o.valid = 1
+			AND c.date_add >= DATE_SUB(CURDATE(),INTERVAL 7 DAY)
 			AND cu.is_guest = 0';
 
 		$sql .= Shop::addSqlRestriction(Shop::SHARE_CUSTOMER, 'o');
@@ -271,8 +271,8 @@ class Followup extends Module
 		FROM '._DB_PREFIX_.'orders o
 		LEFT JOIN '._DB_PREFIX_.'customer cu ON (cu.id_customer = o.id_customer)
 		LEFT JOIN '._DB_PREFIX_.'cart c ON (c.id_cart = o.id_cart)
-			WHERE o.valid = 1 
-			AND DATE_SUB(CURDATE(),INTERVAL 90 DAY) <= o.date_add 
+			WHERE o.valid = 1
+			AND DATE_SUB(CURDATE(),INTERVAL 90 DAY) <= o.date_add
 			AND cu.is_guest = 0 ';
 
 		$sql .= Shop::addSqlRestriction(Shop::SHARE_CUSTOMER, 'o');
@@ -424,8 +424,8 @@ class Followup extends Module
 	public function renderStats()
 	{
 		$stats = Db::getInstance(_PS_USE_SQL_SLAVE_)->executeS('
-			SELECT DATE_FORMAT(l.date_add, \'%Y-%m-%d\') date_stat, l.id_email_type, COUNT(l.id_log_email) nb, 
-			(SELECT COUNT(l2.id_cart_rule) 
+			SELECT DATE_FORMAT(l.date_add, \'%Y-%m-%d\') date_stat, l.id_email_type, COUNT(l.id_log_email) nb,
+			(SELECT COUNT(l2.id_cart_rule)
 			FROM '._DB_PREFIX_.'log_email l2
 			LEFT JOIN '._DB_PREFIX_.'order_cart_rule ocr ON (ocr.id_cart_rule = l2.id_cart_rule)
 			LEFT JOIN '._DB_PREFIX_.'orders o ON (o.id_order = ocr.id_order)
