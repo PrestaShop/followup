@@ -472,7 +472,7 @@ class Followup extends Module
 
 		$cron_info = '';
 		if (Shop::getContext() === Shop::CONTEXT_SHOP)
-			$cron_info = $this->l('Define the settings and place the following URL in the crontab, or call it manually on a daily basis:').'<br />
+			$cron_info = $this->l('Define the settings and paste the following URL in the crontab, or call it manually on a daily basis:').'<br />
 								<b>'.$this->context->shop->getBaseURL().'modules/followup/cron.php?secure_key='.Configuration::get('PS_FOLLOWUP_SECURE_KEY').'</b></p>';
 
 		$fields_form_1 = array(
@@ -650,7 +650,7 @@ class Followup extends Module
 					'title' => $this->l('Bad customers'),
 					'icon' => 'icon-cogs'
 				),
-				'description' => $this->l('For each customer who has already passed at least one order and with no orders since a given duration, generate a discount and send it to the customer.'),
+				'description' => $this->l('For each customer who has already placed at least one order and with no orders since a given duration, generate a discount and send it to the customer.'),
 				'input' => array(
 					array(
 						'type' => 'switch',
