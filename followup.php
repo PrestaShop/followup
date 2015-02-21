@@ -152,6 +152,8 @@ class Followup extends Module
 		if (!empty($email_logs))
 			$sql .= ' AND c.id_cart NOT IN ('.join(',', $email_logs).')';
 
+		$sql .= ' GROUP BY cu.id_customer';
+
 		$emails = Db::getInstance()->executeS($sql);
 
 		if ($count || !count($emails))
