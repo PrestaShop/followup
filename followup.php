@@ -402,10 +402,13 @@ class Followup extends Module
 
 		if ($conf['PS_FOLLOW_UP_ENABLE_1'])
 			$this->cancelledCart();
+
 		if ($conf['PS_FOLLOW_UP_ENABLE_2'])
 			$this->reOrder();
+
 		if ($conf['PS_FOLLOW_UP_ENABLE_3'])
 			$this->bestCustomer();
+
 		if ($conf['PS_FOLLOW_UP_ENABLE_4'])
 			$this->badCustomer();
 
@@ -413,6 +416,7 @@ class Followup extends Module
 		if ($conf['PS_FOLLOW_UP_CLEAN_DB'] == 1)
 		{
 			$outdated_discounts = Db::getInstance()->executeS('SELECT id_cart_rule FROM '._DB_PREFIX_.'cart_rule WHERE date_to < NOW() AND code LIKE "FLW-%"');
+
 			foreach ($outdated_discounts as $outdated_discount)
 			{
 				$cart_rule = new CartRule((int)$outdated_discount['id_cart_rule']);
@@ -436,24 +440,29 @@ class Followup extends Module
 			GROUP BY DATE_FORMAT(l.date_add, \'%Y-%m-%d\'), l.id_email_type');
 
 		$stats_array = array();
-		foreach ($stats as $stat)
-		{
-			$stats_array[$stat['date_stat']][$stat['id_email_type']]['nb'] = (int)$stat['nb'];
-			$stats_array[$stat['date_stat']][$stat['id_email_type']]['nb_used'] = (int)$stat['nb_used'];
-		}
+
+		if (!empty($stats))
+			foreach ($stats as $stat)
+			{
+				$stats_array[$stat['date_stat']][$stat['id_email_type']]['nb'] = (int)$stat['nb'];
+				$stats_array[$stat['date_stat']][$stat['id_email_type']]['nb_used'] = (int)$stat['nb_used'];
+			}
 
 		foreach ($stats_array as $date_stat => $array)
 		{
 			$rates = array();
+
 			for ($i = 1; $i != 5; $i++)
 				if (isset($stats_array[$date_stat][$i]['nb']) && isset($stats_array[$date_stat][$i]['nb_used']) && $stats_array[$date_stat][$i]['nb_used'] > 0)
 					$rates[$i] = number_format(($stats_array[$date_stat][$i]['nb_used'] / $stats_array[$date_stat][$i]['nb']) * 100, 2, '.', '');
+
 			for ($i = 1; $i != 5; $i++)
 			{
 				$stats_array[$date_stat][$i]['nb'] = isset($stats_array[$date_stat][$i]['nb']) ? (int)$stats_array[$date_stat][$i]['nb'] : 0;
 				$stats_array[$date_stat][$i]['nb_used'] = isset($stats_array[$date_stat][$i]['nb_used']) ? (int)$stats_array[$date_stat][$i]['nb_used'] : 0;
 				$stats_array[$date_stat][$i]['rate'] = isset($rates[$i]) ? '<b>'.$rates[$i].'</b>' : '0.00';
 			}
+
 			ksort($stats_array[$date_stat]);
 		}
 
