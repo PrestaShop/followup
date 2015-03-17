@@ -436,10 +436,12 @@ class Followup extends Module
 			GROUP BY DATE_FORMAT(l.date_add, \'%Y-%m-%d\'), l.id_email_type');
 
 		$stats_array = array();
-		foreach ($stats as $stat)
-		{
-			$stats_array[$stat['date_stat']][$stat['id_email_type']]['nb'] = (int)$stat['nb'];
-			$stats_array[$stat['date_stat']][$stat['id_email_type']]['nb_used'] = (int)$stat['nb_used'];
+		if (!empty($stats)) {
+			foreach ($stats as $stat)
+			{
+				$stats_array[$stat['date_stat']][$stat['id_email_type']]['nb'] = (int)$stat['nb'];
+				$stats_array[$stat['date_stat']][$stat['id_email_type']]['nb_used'] = (int)$stat['nb_used'];
+			}
 		}
 
 		foreach ($stats_array as $date_stat => $array)
