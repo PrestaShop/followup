@@ -479,7 +479,7 @@ class Followup extends Module
 		$fields_form_1 = array(
 			'form' => array(
 				'legend' => array(
-					'title' => $this->l('Informations'),
+					'title' => $this->l('Information'),
 					'icon' => 'icon-cogs',
 				),
 				'description' => $this->l('Four kinds of e-mail alerts are available in order to stay in touch with your customers!').'<br />'.$cron_info,
