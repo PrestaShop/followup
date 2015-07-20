@@ -1,6 +1,6 @@
 {
-  "name": "PrestaShop/modules/followup",
-  "description": "Prestashop module followup",
+  "name": "PrestaShop/followup",
+  "description": "PrestaShop module followup",
   "homepage": "https://github.com/PrestaShop/followup",
   "license": "AFL - Academic Free License (AFL 3.0)",
   "authors": [
@@ -10,7 +10,7 @@
     }
   ],
   "require": {
-    "php": ">=5.2"
+    "php": ">=5.3.2"
   },
   "config": {
     "preferred-install": "dist"
