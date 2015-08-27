@@ -33,7 +33,7 @@ class Followup extends Module
 	{
 		$this->name = 'followup';
 		$this->tab = 'advertising_marketing';
-		$this->version = '1.6.7';
+		$this->version = '1.7.0';
 		$this->author = 'PrestaShop';
 		$this->need_instance = 0;
 
